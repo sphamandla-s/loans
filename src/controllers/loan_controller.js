@@ -88,7 +88,7 @@ export const makePayments = async (req, res) => {
         const newInstallment = new Instalment({
             emi,
             payments: payments + 1,
-            interest: interest,
+            interest: interest.toFixed(3),
             principal: principal.toFixed(3),
             closing: closingBalance.toFixed(3),
 
@@ -97,7 +97,7 @@ export const makePayments = async (req, res) => {
         await newInstallment.save();
         const instalment = await Instalment.find();
         const updateLoan = await Loan.findByIdAndUpdate(loans[0].id, { balance: closingBalance.toFixed(3), installments: instalment }, { new: true })
-        res.status(200).json(updateLoan);
+        res.status(200).json(newInstallment);
 
 
     } catch (error) {
