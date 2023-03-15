@@ -5,9 +5,13 @@ const installmentsSchema = mongoose.Schema({
         type : Number,
         required : true
     },
-    outstanding : Number,
+    payments: {
+        type : Number,
+        default : 0
+        },
     interest: Number,
     principal: Number,
+    closing : Number,
 });
 
 const Instalment = mongoose.model('Instalment', installmentsSchema);

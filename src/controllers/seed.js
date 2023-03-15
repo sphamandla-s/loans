@@ -34,3 +34,5 @@ function calculateEMI(loanAmount, interestRate, paymentPeriod) {
   
   return p * interestRate * Math.pow(r, n) / (Math.pow(r, n) - 1);
 }
+
+
