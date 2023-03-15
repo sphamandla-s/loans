@@ -2,6 +2,7 @@ import express  from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors'
 import { fileURLToPath } from "url";
 import authRouters from './src/routes/auth_routers.js'
 import loanRouters from './src/routes/loan_routers.js'
@@ -13,6 +14,7 @@ const port = process.env.PORT | 3009;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));

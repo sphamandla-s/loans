@@ -1,12 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>LoanUp</title>
 </head>
+
 <body>
+
+    <main class="bg-gray-800 text-white w-full">
+        <div id="content"></div>
+    </main>
+
+
+    <script id="signin-template" type="text/x-handlebars-template">
+        <div id="auth" class="flex flex-col justify-center items-center text-center h-screen">
+            <div id="login">
+                <h1 class="text-4xl">Welcome Back!</h1>
+                <p class="py-3">Get your loan at a cheap rate</p>
+                <form id="signin-form" class="flex flex-col gap-5">
+                    <input type="text" name='email' placeholder='Enter Your Email'
+                        class='p-2 bg-transparent rounded-md focus:outline-none border-2' />
+                    <input type="text" name='password' placeholder='Enter Your password'
+                        class='p-2 bg-transparent rounded-md focus:outline-none border-2' />
+                    <input id="submit" type="submit" value="Login"
+                        class="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500" />
+                </form>
+                <p>Don't have an account? <a href="#/signup" class="text-blue-300">SignUp</a></p>
+            </div>
+
+        </div>
+      </script>
+
+      <script id="signup-template" type="text/x-handlebars-template">
+        <div id="auth" class="flex flex-col justify-center items-center text-center h-screen">
+            <div id="login">
+                <h1 class="text-4xl py-3">Register</h1>
+                <form id="signup-form" class="flex flex-col gap-5">
+                    <input type="text" name='firstName' placeholder='Enter Your FirstName'
+                        class='p-2 bg-transparent rounded-md focus:outline-none border-2' />
+                        <input type="text" name='lastName' placeholder='Enter Your LastName'
+                        class='p-2 bg-transparent rounded-md focus:outline-none border-2' />
+                    <input type="text" name='email' placeholder='Enter Your Email'
+                        class='p-2 bg-transparent rounded-md focus:outline-none border-2' />
+                    <input type="text" name='password' placeholder='Enter Your password'
+                        class='p-2 bg-transparent rounded-md focus:outline-none border-2' />
+                    <input id="submit" type="submit" value="REGISTER"
+                        class="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500" />
+                </form>
+                <p>Already have an account? <a href="#/" class="text-blue-300">Login</a></p>
+            </div>
+
+        </div>
+      </script>
+
+      <script id="dashboard-template" type="text/x-handlebars-template">
+        <nav>
+            <nav class='py-10 mb-12 flex justify-between align-middle'>
+                  <h1 id="logo" class='text-3xl text-center font-thin px-10'>
+                    <a href="#banner">LoanUp</a>
+                  </h1>
     
+                <div class="flex items-center">
+                  <ul class='hidden md:flex text-2xl'>
+                    <li class=' px-4 capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><a href="#banner">Home</a></li>
+                    <li class=' px-4  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><a href="#about">About</a></li>
+                    <li class=' px-4  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><a href="#projects">Projects</a></li>
+                    <li class=' px-4  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><a href="#contact">Contact</a></li>
+    
+                  </ul>
+    
+                </div>
+    
+              </nav>
+        </nav>
+      </script>
+
+
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+      <script src="./js/app.js"></script>
 </body>
+
 </html>
