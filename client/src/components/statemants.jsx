@@ -33,7 +33,7 @@ const DisplayStatement = () => {
     const installments = useLoaderData();
     console.log(installments)
     return (
-        <div className="h-screen bg-gray-900 text-white">
+        <div className=" min-h-screen bg-gray-900 text-white">
             <table className="w-full text-left">
                 <thead>
                     <tr>

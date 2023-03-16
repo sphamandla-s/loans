@@ -25,8 +25,10 @@ export const takeLoan = async (req, res) => {
         // const loansddf = await Instalment.deleteMany({})
         const loans = await Loan.find({ userId })
 
+       
 
         if (loans.length === 0 || loans[0].balance <= 0) {
+            console.log('HERE')
 
             const emiCal = calculateEMI(balance, interestRate, paymentPeriod)
 

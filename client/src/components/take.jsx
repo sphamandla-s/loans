@@ -28,7 +28,7 @@ const Take = () => {
         if (response.ok) {
             navigate('/home');
         } else {
-            alert('Refresh the page and try again');
+            alert('You Have An Outstanding Loan Please Finish Paying First Before You Take Another Loan');
         }
         console.log(responseData);
     };
@@ -36,7 +36,7 @@ const Take = () => {
     return (
         <div className="flex flex-col justify-center items-center text-center h-screen px-10 bg-gray-900 text-white">
             <h1 className="text-6xl">Take A loan</h1>
-            <div className="py-5">
+            <div className="py-5 text-xl">
                 <p>Interest rate is 10%</p>
                 <p> period is 18 months</p>
             </div>
