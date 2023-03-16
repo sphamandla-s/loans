@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 
 export const SignUp = () => {
+  sessionStorage.clear()
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');

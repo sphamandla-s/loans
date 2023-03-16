@@ -7,15 +7,16 @@ const Home = () => {
         <main className='px-10 bg-gray-900 text-white h-screen'>
             <header className=' min-screen'>
                 <nav className='py-10 mb-12 flex justify-between align-middle'>
-                            <h1 id="logo" className='text-3xl text-center font-thin'>
-                                <Link to="home">LoanUp</Link>
-                            </h1>
+                    <h1 id="logo" className='text-3xl text-center font-thin'>
+                        <Link to="home">LoanUp</Link>
+                    </h1>
 
                     <div className="flex items-center">
                         <ul className='hidden md:flex text-2xl'>
-                        <li className=' px-4  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><Link to="home">Home</Link></li>
                             <li className=' px-4 capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><Link to="statements">Statements</Link></li>
                             <li className=' px-4  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><Link to="pay">Pay</Link></li>
+                            <li className=' px-4 text-red-800  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200' onClick={sessionStorage.clear()}><Link to="/">LOGOUT</Link></li>
+
                         </ul>
 
                     </div>
