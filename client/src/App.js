@@ -1,10 +1,11 @@
 import React from "react";
-import {SignUp, holdUser} from "./components/register";
+import { SignUp, holdUser } from "./components/register";
 import { BrowserRouter as Router, Routes, Route, createBrowserRouter, createRoutesFromElements, Link, Outlet, RouterProvider } from "react-router-dom"
 import Home from "./components/home.jsx";
 import LogIn from './components/login.jsx';
-import Pay from './components/pay.jsx';
-import {Statements, dataLoader} from "./components/statemants.jsx";
+import { Pay, singleLoanLoad } from './components/pay.jsx';
+import { Statements, dataLoader } from "./components/statemants.jsx";
+import { Success } from "./components/success";
 import Take from './components/take.jsx'
 import './index.css';
 
@@ -16,16 +17,17 @@ function App(props) {
       <Route path="/" element={<Root />} >
         <Route index element={<LogIn />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/home/pay" element={<Pay />} />
+        <Route path="/home/pay" element={<Pay />} loader={singleLoanLoad} />
         <Route path="/home/statements" element={<Statements />} loader={dataLoader} />
         <Route path="/home/Take" element={<Take />} />
-        <Route path="/home/register" element={<SignUp />} loader={holdUser}/>
+        <Route path="/home/register" element={<SignUp />}  />
+        <Route path="/success" element={<Success/>}  />
       </Route>
     )
   )
 
   return (
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   );
 }
 

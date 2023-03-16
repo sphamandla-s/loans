@@ -67,6 +67,17 @@ export const viewLoan = async (req, res) => {
     }
 }
 
+export const getSingleLoan = async (req, res) => {
+    try {
+        const { userId } = req.query;
+        const loan = await Loan.find({ userId })
+        console.log(loan)
+        res.status(200).json(loan)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+
 
 export const makePayments = async (req, res) => {
     try {
