@@ -16,10 +16,10 @@ function App(props) {
       <Route path="/" element={<Root />} >
         <Route index element={<LogIn />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/pay" element={<Pay />} />
-        <Route path="/statements" element={<Statements />} loader={dataLoader} />
-        <Route path="/Take" element={<Take />} />
-        <Route path="/register" element={<SignUp />} loader={holdUser}/>
+        <Route path="/home/pay" element={<Pay />} />
+        <Route path="/home/statements" element={<Statements />} loader={dataLoader} />
+        <Route path="/home/Take" element={<Take />} />
+        <Route path="/home/register" element={<SignUp />} loader={holdUser}/>
       </Route>
     )
   )

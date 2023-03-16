@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 export const SignUp = () => {
@@ -24,7 +24,7 @@ export const SignUp = () => {
 
     const responseData = await response.json();
     // Store the user's data for use by other components
-    localStorage.setItem('userData', JSON.stringify(responseData));
+    sessionStorage.setItem('userData', JSON.stringify(responseData));
     if (response.ok) {
       navigate('/home');
     } else {
@@ -34,23 +34,20 @@ export const SignUp = () => {
   };
 
   return (
-    <div id="auth" className="flex flex-col justify-center items-center text-center h-screen">
-    <h1 className="text-4xl py-3">Register</h1>
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="firstName">First Name:</label>
-      <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+    <div id="auth" className="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
+    <h1 className="text-6xl py-3">Register</h1>
+    <form class="flex flex-col gap-5" onSubmit={handleSubmit}>
+      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your FirstName' type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 
-      <label htmlFor="lastName">Last Name:</label>
-      <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your LastName' type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-      <label htmlFor="password">Password:</label>
-      <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-      <button type="submit" >SIGNUP</button>
+      <button type="submit" class="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500"  >SIGNUP</button>
     </form>
+    <p>Already have an account? <Link to="/" class="text-blue-300">Login</Link></p>
     </div>
   );
 }
