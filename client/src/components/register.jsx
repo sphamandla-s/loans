@@ -3,7 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 
 
 export const SignUp = () => {
-  sessionStorage.clear()
+
+   sessionStorage.clear()
+  
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,8 +27,9 @@ export const SignUp = () => {
 
     const responseData = await response.json();
     // Store the user's data for use by other components
-    sessionStorage.setItem('userData', JSON.stringify(responseData));
+    
     if (response.ok) {
+      sessionStorage.setItem('userData', JSON.stringify(responseData));
       navigate('/home');
     } else {
       alert('User already exist please login');

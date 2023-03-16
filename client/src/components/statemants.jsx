@@ -4,7 +4,34 @@ import { useLoaderData } from "react-router-dom";
 
 export const Statements = () => {
     const installments = useLoaderData();
-    console.log( installments)
+    console.log(installments)
+    return (
+        installments.error ? <ErrPage /> : <DisplayStatement />
+    )
+}
+
+
+export const dataLoader = async () => {
+    
+    const userData = JSON.parse(sessionStorage.getItem("userData"));
+    console.log(userData._id)
+    const userId = userData._id
+    const res = await fetch(`http://localhost:3001/loans/view/?userId=${userId}`);
+    const installments = await res.json()
+    return installments;
+}
+
+const ErrPage = () => {
+    return (
+        <div class="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
+            <h1 className="text-5xl">You Have Not Taken A Loan yet Please Go To the Loan Page</h1>
+        </div>
+    )
+}
+
+const DisplayStatement = () => {
+    const installments = useLoaderData();
+    console.log(installments)
     return (
         <div className="h-screen bg-gray-900 text-white">
             <table className="w-full text-left">
@@ -35,12 +62,3 @@ export const Statements = () => {
         </div>
     )
 }
-
-export const dataLoader = async () => {
-    const userData = JSON.parse(sessionStorage.getItem("userData"));
-    const userId = userData.user._id
-    const res = await fetch(`http://localhost:3001/loans/view/?userId=${userId}`);
-    const installments = await res.json()
-    return installments;
-}
-

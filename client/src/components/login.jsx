@@ -3,12 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const LogIn = () => {
+
     sessionStorage.clear()
+   
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
+        
         event.preventDefault();
 
         const data = { email, password };
@@ -23,8 +26,9 @@ const LogIn = () => {
 
         const responseData = await response.json();
         // Store the user's data for use by other components
-        sessionStorage.setItem('userData', JSON.stringify(responseData));
+        
         if (response.ok) {
+            sessionStorage.setItem('userData', JSON.stringify(responseData));
             navigate('/home');
         } else {
             alert('Invalid credentials');

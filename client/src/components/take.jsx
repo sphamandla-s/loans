@@ -7,7 +7,9 @@ const Take = () => {
     const navigate = useNavigate();
 
     const userData = JSON.parse(sessionStorage.getItem("userData"));
-    const userId = userData.user._id
+    console.log(userData._id)
+    const userId = userData._id
+   
     const handleSubmit = async (event) => {
         event.preventDefault();
 

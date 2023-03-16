@@ -20,7 +20,7 @@ function App(props) {
         <Route path="/home/pay" element={<Pay />} loader={singleLoanLoad} />
         <Route path="/home/statements" element={<Statements />} loader={dataLoader} />
         <Route path="/home/Take" element={<Take />} />
-        <Route path="/home/register" element={<SignUp />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/success" element={<Success />} loader={dataLoader} />
       </Route>
     )

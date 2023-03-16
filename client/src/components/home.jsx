@@ -15,7 +15,7 @@ const Home = () => {
                         <ul className='hidden md:flex text-2xl'>
                             <li className=' px-4 capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><Link to="statements">Statements</Link></li>
                             <li className=' px-4  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><Link to="pay">Pay</Link></li>
-                            <li className=' px-4 text-red-800  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200' onClick={sessionStorage.clear()}><Link to="/">LOGOUT</Link></li>
+                            <li className=' px-4 text-red-800  capitalize cursor-pointer font-medium hover:text-gray-400 transition-all duration-200'><Link to="/">LOGOUT</Link></li>
 
                         </ul>
 
@@ -42,7 +42,7 @@ const Home = () => {
 
 
                     <div className='relative mt-8'>
-                        <image src='images/19197296.jpg' alt={'my profile'} />
+                        <image src='../images/19197296.jpg' alt={'my profile'} />
                     </div>
                 </div>
             </section>
