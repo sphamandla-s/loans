@@ -22,7 +22,8 @@ describe('signUp', () => {
     it('should return a response with status 200 and a success message', async () => {
       const req = {
         body: {
-          name: 'John',
+          firstName : 'John',
+          lastName : 'Smith',
           email: 'john@example.com',
           password: 'password123'
         }
@@ -36,7 +37,8 @@ describe('signUp', () => {
       expect(res.json).toHaveBeenCalledWith({
         message: 'User registered successfully',
         user: {
-          name: 'John',
+          firstName : 'John',
+          lastName : 'Smith',
           email: 'john@example.com',
           password: 'password123'
         }
