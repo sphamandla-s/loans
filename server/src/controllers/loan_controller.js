@@ -28,7 +28,7 @@ export const takeLoan = async (req, res) => {
        
 
         if (loans.length === 0 || loans[0].balance <= 0) {
-            console.log('HERE')
+             console.log(loans.length)
 
             const emiCal = calculateEMI(balance, interestRate, paymentPeriod)
 
@@ -37,7 +37,8 @@ export const takeLoan = async (req, res) => {
             })
 
             await newInstallment.save();
-            const instalment = await Instalment.find();
+            console.log(newInstallment.id)
+            const instalment = await Instalment.findById(newInstallment.id);
 
             const newLoan = new Loan({
                 userId,
@@ -62,7 +63,6 @@ export const viewLoan = async (req, res) => {
     try {
         const { userId } = req.query;
         const loan = await Loan.find({ userId })
-        console.log(loan)
         res.status(200).json(loan[0].installments)
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -73,7 +73,6 @@ export const getSingleLoan = async (req, res) => {
     try {
         const { userId } = req.query;
         const loan = await Loan.find({ userId })
-        console.log(loan)
         res.status(200).json(loan)
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -96,7 +95,6 @@ export const makePayments = async (req, res) => {
         const closingBalance = openingBalance - principal;
         const installmentCount = loans[0].installments.length;
         const payments = loans[0].installments[installmentCount - 1].payments
-        console.log(payments.payments)
 
         const newInstallment = new Instalment({
             emi,
@@ -108,7 +106,9 @@ export const makePayments = async (req, res) => {
         })
 
         await newInstallment.save();
-        const instalment = await Instalment.find();
+        const newLoans = await Loan.find({ userId })
+        newLoans[0].installments.push(newInstallment)
+        const instalment = newLoans[0].installments;
         const updateLoan = await Loan.findByIdAndUpdate(loans[0].id, { balance: closingBalance.toFixed(3), installments: instalment }, { new: true })
         res.status(200).json(newInstallment);
 
