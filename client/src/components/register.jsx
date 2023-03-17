@@ -34,24 +34,24 @@ export const SignUp = () => {
     } else {
       alert('User already exist please login');
     }
-    console.log(responseData);
+    // console.log(responseData);
   };
 
   return (
     <div id="auth" className="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
     <h1 className="text-6xl py-3">Register</h1>
-    <form class="flex flex-col gap-5" onSubmit={handleSubmit}>
-      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your FirstName' type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your FirstName' type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 
-      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your LastName' type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your LastName' type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-      <input class='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
-      <button type="submit" class="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500"  >SIGNUP</button>
+      <button type="submit" className="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500"  >SIGNUP</button>
     </form>
-    <p>Already have an account? <Link to="/" class="text-blue-300">Login</Link></p>
+    <p>Already have an account? <Link to="/" className="text-blue-300">Login</Link></p>
     </div>
   );
 }

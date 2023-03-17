@@ -7,7 +7,7 @@ const Take = () => {
     const navigate = useNavigate();
 
     const userData = JSON.parse(sessionStorage.getItem("userData"));
-    console.log(userData._id)
+    // console.log(userData._id)
     const userId = userData._id
    
     const handleSubmit = async (event) => {
@@ -30,7 +30,7 @@ const Take = () => {
         } else {
             alert('You Have An Outstanding Loan Please Finish Paying First Before You Take Another Loan');
         }
-        console.log(responseData);
+        // console.log(responseData);
     };
 
     return (

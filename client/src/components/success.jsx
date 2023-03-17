@@ -5,7 +5,7 @@ export const Success = () => {
     const navigate = useNavigate();
     const paid = useLoaderData();
     const lastPaid = paid[paid.length - 1]
-    console.log(lastPaid.emi)
+    // console.log(lastPaid.emi)
     return (
         <div className="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-white">
             <h1 className="text-7xl">Successfully Paid</h1>

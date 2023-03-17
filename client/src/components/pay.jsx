@@ -12,7 +12,7 @@ export const Pay = () => {
 
 const ErrPage = () => {
     return(
-        <div class="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
+        <div className="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
         <h1 className="text-5xl">You Have Not Taken A Loan yet Please Go To the Loan Page</h1>
     </div>
     )
@@ -48,12 +48,12 @@ const DisplayLoan = ()=>{
         } else {
             alert("You can't pay beyond the agreed time frame, your outstanding balance has been cleared");
         }
-        console.log(responseData);
+        // console.log(responseData);
     };
 
 
     return (
-        <div class="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
+        <div className="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
             <h1 className="text-5xl">Welcome to Payments Department</h1>
             <div className="py-5 text-xl">
                 <p>Opening balance  : ZAR {data[0].balance}</p>

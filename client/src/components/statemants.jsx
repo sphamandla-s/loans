@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 export const Statements = () => {
     const installments = useLoaderData();
-    console.log(installments)
+    // console.log(installments)
     return (
         installments.error ? <ErrPage /> : <DisplayStatement />
     )
@@ -15,7 +15,7 @@ export const Statements = () => {
 export const dataLoader = async () => {
     
     const userData = JSON.parse(sessionStorage.getItem("userData"));
-    console.log(userData._id)
+    // console.log(userData._id)
     const userId = userData._id
     const res = await fetch(`http://localhost:3001/loans/view/?userId=${userId}`);
     const installments = await res.json()
@@ -24,7 +24,7 @@ export const dataLoader = async () => {
 
 const ErrPage = () => {
     return (
-        <div class="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
+        <div className="flex flex-col justify-center items-center text-center h-screen bg-gray-900 text-gray-200">
             <h1 className="text-5xl">You Have Not Taken A Loan yet Please Go To the Loan Page</h1>
         </div>
     )
@@ -33,7 +33,7 @@ const ErrPage = () => {
 const DisplayStatement = () => {
     const installments = useLoaderData();
     const navigate = useNavigate();
-    console.log(installments)
+    // console.log(installments)
     return (
         <div className=" min-h-screen bg-gray-900 text-white">
             <table className="w-full text-left">
@@ -48,12 +48,12 @@ const DisplayStatement = () => {
                 </thead>
                 <tbody>
                     {installments.map((installment) => (
-                        <tr key={installment._id} class="border-b dark:bg-gray-800">
-                            <td scope="col" class="px-6 py-3">{installment.payments}</td>
-                            <td scope="col" class="px-6 py-3">ZAR {installment.emi}</td>
-                            <td scope="col" class="px-6 py-3">ZAR {installment.interest}</td>
-                            <td scope="col" class="px-6 py-3">ZAR {installment.principal}</td>
-                            <td scope="col" class="px-6 py-3">ZAR {installment.closing} </td>
+                        <tr key={installment._id} className="border-b dark:bg-gray-800">
+                            <td scope="col" className="px-6 py-3">{installment.payments}</td>
+                            <td scope="col" className="px-6 py-3">ZAR {installment.emi}</td>
+                            <td scope="col" className="px-6 py-3">ZAR {installment.interest}</td>
+                            <td scope="col" className="px-6 py-3">ZAR {installment.principal}</td>
+                            <td scope="col" className="px-6 py-3">ZAR {installment.closing} </td>
                         </tr>
                     ))}
 

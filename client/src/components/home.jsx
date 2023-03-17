@@ -42,7 +42,7 @@ const Home = () => {
 
 
                     <div className='relative mt-8'>
-                        <image src='../images/19197296.jpg' alt={'my profile'} />
+                        {/* <image src='../images/19197296.jpg' alt={'my profile'} /> */}
                     </div>
                 </div>
             </section>

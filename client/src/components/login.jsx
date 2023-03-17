@@ -33,7 +33,7 @@ const LogIn = () => {
         } else {
             alert('Invalid credentials');
         }
-        console.log(responseData);
+        // console.log(responseData);
     };
 
     return (
