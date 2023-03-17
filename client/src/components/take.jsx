@@ -42,7 +42,7 @@ const Take = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <input type="number" className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter The Amount You Want' id="balance" value={balance} onChange={(e) => setBalance(e.target.value)} />
+                <input required type="number" className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter The Amount You Want' id="balance" value={balance} onChange={(e) => setBalance(e.target.value)} />
                 <button type="submit" className="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500" >SUBMIT</button>
             </form>
         </div>

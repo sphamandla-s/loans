@@ -43,11 +43,11 @@ export const SignUp = () => {
     <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your FirstName' type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 
-      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your LastName' type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      <input required className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your LastName' type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input required className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-      <input className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input required className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
       <button type="submit" className="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500"  >SIGNUP</button>
     </form>

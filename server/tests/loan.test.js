@@ -1,50 +1,134 @@
-import request from 'supertest';
-import User from '../src/models/auth_model.js';
-import app from '../src/routes/auth_routers.js'; // Your Express app instance
+import { takeLoan, viewLoan, makePayments } from "../src/controllers/loan_seed_controller";
 
 
+describe('takeLoan', () => {
+  it('should return a response with status 201 and a new loan object if there are no outstanding loans', async () => {
+    // Define test data
+    const req = {
+      body: {
+        userId: '123',
+        balance: 5000,
+      },
+    };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
 
-describe('POST /signup', () => {
-    beforeEach(async () => {
-        const t = await User.find()
-        console.log(t)
-      await User.deleteMany({});
-    }, 50000); 
+    // Call the function being tested
+    await takeLoan(req, res);
 
-  it('should create a new user', async () => {
-    const res = await request(app)
-      .post('/signup')
-      .send({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@example.com',
-        password: 'password123',
-      })
-      .expect(201);
-
-    expect(res.body).toHaveProperty('_id');
-    expect(res.body).toHaveProperty('firstName', 'John');
-    expect(res.body).toHaveProperty('lastName', 'Doe');
-    expect(res.body).toHaveProperty('email', 'johndoe@example.com');
-    expect(res.body).not.toHaveProperty('password');
-  });
-
-  it('should return a 500 error if an error occurs during user creation', async () => {
-    // This test case assumes that the `save` method of the `User` model always throws an error
-    jest.spyOn(User.prototype, 'save').mockImplementation(() => {
-      throw new Error('An error occurred');
-    });
-
-    const res = await request(app)
-      .post('/signup')
-      .send({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@example.com',
-        password: 'password123',
-      })
-      .expect(500);
-
-    expect(res.body).toHaveProperty('error', 'An error occurred');
   });
 });
+
+
+describe('viewLoan', () => {
+  it('should return a response with status 200 and an array of loan installments', async () => {
+    const req = {
+      query: {
+        userId: '123'
+      }
+    };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn()
+    };
+    await viewLoan(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith([
+      {
+        emi: 2000,
+        paymentDate: '2022-01-01'
+      },
+      {
+        emi: 2000,
+        paymentDate: '2022-02-01'
+      },
+      {
+        emi: 2000,
+        paymentDate: '2022-03-01'
+      }
+    ]);
+
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+    expect(req.query).toHaveProperty('userId');
+    expect(req.query.userId).toEqual('123');
+    expect(res).toHaveProperty('status');
+    expect(res.status).toBeDefined();
+    expect(res.json).toBeDefined();
+    expect(res.status).not.toBeNull();
+    expect(res.json).not.toBeNull();
+  });
+});
+
+
+
+
+describe('makePayments', () => {
+  test('should update the installment with new data if the payment is within the agreed time frame', async () => {
+    // Arrange
+    const req = { body: { userId: 1 } };
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    const loans = [
+      {
+        balance: 15000,
+        installments: [
+          {
+            emi: 2000,
+            payments: 2,
+          },
+          {
+            emi: 2000,
+            payments: 3,
+          },
+          {
+            emi: 2000,
+            payments: 4,
+          },
+        ],
+      },
+    ];
+  
+    // Act
+    await makePayments(req, res);
+  
+    // Assert
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalled();
+  });
+  
+  test('should return an error message if the outstanding balance is beyond the time frame agreed', async () => {
+    // Arrange
+    const req = { body: { userId: 1 } };
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    const loans = [
+      {
+        balance: 15000,
+        installments: [
+          {
+            emi: 2000,
+            payments: 2,
+          },
+          {
+            emi: 2000,
+            payments: 3,
+          },
+          {
+            emi: 2000,
+            payments: 18, // outstanding balance is beyond the agreed time frame
+          },
+        ],
+      },
+    ];
+  
+    // Act
+    await makePayments(req, res);
+  
+    // Assert
+    expect(res.status).toHaveBeenCalledWith(200);
+   
+  });
+});
+

@@ -41,9 +41,9 @@ const LogIn = () => {
             <h1 className="text-4xl">Welcome Back!</h1>
             <p className="py-3">Get your loan at a cheap rate</p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <input type="email" className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input required type="email" className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your Email' id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
-                <input type="password" className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input required type="password" className='p-2 bg-transparent rounded-md focus:outline-none border-2' placeholder='Enter Your password' id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
                 <button type="submit" className="bg-gradient-to-r from-green-600 to-yellow-600 m-auto px-6 py-3 my-8 flex items-center rounded-md hover:scale-110 duration-500" >LOGIN</button>
             </form>
