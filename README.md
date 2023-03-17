@@ -34,5 +34,5 @@ All responses from the server are in JSON format.
 # Client
 The client is built using ReactJS and Tailwind for styling. React Router v6.4 is used for routing, and the client sends fetch requests to the server to retrieve data.
 
-Conclusion
+# Conclusion
 The LOANS application is a simple loan management system that allows users to register, login, take a loan, view their payments and outstanding balances, and make payments. The server is built using Express, Node.js, and MongoDB, and user information is protected using bcrypt and JSON Web Tokens. The client is built using ReactJS and Tailwind for styling.
