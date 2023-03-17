@@ -1,4 +1,4 @@
-import express  from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
@@ -7,8 +7,11 @@ import { fileURLToPath } from "url";
 import authRouters from './src/routes/auth_routers.js'
 import loanRouters from './src/routes/loan_routers.js'
 import dotenv from 'dotenv';
+import { url } from 'inspector';
 const app = express();
 const port = process.env.PORT | 3001;
+
+const mongoUrl = 'mongodb+srv://ivankhutso:kP8CYSlicGZHHNSB@loans.dd9xgkj.mongodb.net/?retryWrites=true&w=majority'
 
 // Config the project
 const __filename = fileURLToPath(import.meta.url);
@@ -23,13 +26,28 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use('/auth', authRouters);
 app.use('/loans', loanRouters);
 
-
 // Connect to the mango database and start the server
-mongoose.connect('mongodb://localhost:27017/loan').then(() => {
-    app.listen(port, () => {
-        console.log(`Listening to port ${port}`)
+mongoose.connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`Listening to port ${port}`)
+        })
+
     })
-}).catch(err => {
-    console.log("There was an error")
-    console.log(err)
-});
+    .catch((error) => {
+        console.log('Error connecting to MongoDB Atlas:', error.message);
+    });
+
+
+// // Connect to the mango database and start the server
+// mongoose.connect('mongodb://localhost:27017/loan').then(() => {
+//     app.listen(port, () => {
+//         console.log(`Listening to port ${port}`)
+//     })
+// }).catch(err => {
+//     console.log("There was an error")
+//     console.log(err)
+// });
