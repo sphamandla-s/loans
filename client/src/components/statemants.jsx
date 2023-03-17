@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 
@@ -31,6 +32,7 @@ const ErrPage = () => {
 
 const DisplayStatement = () => {
     const installments = useLoaderData();
+    const navigate = useNavigate();
     console.log(installments)
     return (
         <div className=" min-h-screen bg-gray-900 text-white">
@@ -58,6 +60,9 @@ const DisplayStatement = () => {
 
                 </tbody>
             </table>
+            <div className="text-center py-4">
+            <Link onClick={navigate('/home')} className="text-bold text-blue-300">Back home</Link>
+            </div>
 
         </div>
     )

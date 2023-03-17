@@ -46,7 +46,7 @@ const DisplayLoan = ()=>{
         if (response.ok) {
             navigate('/success');
         } else {
-            alert('Refresh the page and try again');
+            alert("You can't pay beyond the agreed time frame, your outstanding balance has been cleared");
         }
         console.log(responseData);
     };

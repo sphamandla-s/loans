@@ -25,10 +25,9 @@ export const takeLoan = async (req, res) => {
         // const loansddf = await Instalment.deleteMany({})
         const loans = await Loan.find({ userId })
 
-       
 
         if (loans.length === 0 || loans[0].balance <= 0) {
-             console.log(loans.length)
+            console.log(loans.length)
 
             const emiCal = calculateEMI(balance, interestRate, paymentPeriod)
 
@@ -106,11 +105,15 @@ export const makePayments = async (req, res) => {
         })
 
         await newInstallment.save();
-        const newLoans = await Loan.find({ userId })
-        newLoans[0].installments.push(newInstallment)
-        const instalment = newLoans[0].installments;
-        const updateLoan = await Loan.findByIdAndUpdate(loans[0].id, { balance: closingBalance.toFixed(3), installments: instalment }, { new: true })
-        res.status(200).json(newInstallment);
+        if (newInstallment.payments < 19) {
+            const newLoans = await Loan.find({ userId })
+            newLoans[0].installments.push(newInstallment)
+            const instalment = newLoans[0].installments;
+            const updateLoan = await Loan.findByIdAndUpdate(loans[0].id, { balance: closingBalance.toFixed(3), installments: instalment }, { new: true })
+            return res.status(200).json(newInstallment);
+        }
+        const deleteLoan = await Loan.deleteOne({ userId })
+        res.status(400).json({ msg: "outstanding balance beyond the time frame agreed" });
 
 
     } catch (error) {
