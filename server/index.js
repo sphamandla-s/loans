@@ -11,8 +11,6 @@ import { url } from 'inspector';
 const app = express();
 const port = process.env.PORT | 3001;
 
-const mongoUrl = 'mongodb+srv://ivankhutso:kP8CYSlicGZHHNSB@loans.dd9xgkj.mongodb.net/?retryWrites=true&w=majority'
-
 // Config the project
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,7 +25,7 @@ app.use('/auth', authRouters);
 app.use('/loans', loanRouters);
 
 // Connect to the mango database and start the server
-mongoose.connect(mongoUrl, {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
